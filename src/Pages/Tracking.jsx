@@ -4,7 +4,7 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import { AgGridReact } from 'ag-grid-react';
 import Nav from '../Components/UI/Nav';
 
-const DockBooking = () => {
+const Tracking = () => {
     const [fromDate, setFromDate] = useState('');
     const [toDate, setToDate] = useState('');
     const [bookingNo, setBookingNo] = useState('');
@@ -17,26 +17,25 @@ const [rowData, setRowData] = useState([
   ]);
 
   const [colDefs, setColDefs] = useState([
-    { field: "select" },
+    { field: "View" },
+    { field: "Booking Sheet" },
     { field: "Booking No." },
-    { field: " Dock Booking Status." },
-    { field: "Reject" },
-    { field: "Order Type" },
-    { field: "Commodity Type" },
-    { field: "Location Name" },
+    { field: "Location" },
     { field: "Dock Name" },
-    { field: "Dock-in-out" },
-    { field: "Cust/Tenant/Cons Name" },
-    { field: "Truck Type" },
-    { field: "Truck No." },
-    { field: "Driver 1" },
-    { field: "Order Remark" },
-    { field: "Transporter Remark" },
-    { field: "Edit" },
+    { field: "Customer" },
+    { field: "Date(slot book date)" },
+    { field: "Booked" },
+    { field: "Confirmed" },
+    { field: "Arrived" },
+    { field: "Delivered" },
+    { field: "Depart" },
   ]);
     // Function to handle search action
     const handleSearch = () => {
-        
+        console.log('Search clicked');
+        console.log('From Date:', fromDate);
+        console.log('To Date:', toDate);
+        console.log('Booking No.:', bookingNo);
 
         // Reset current page to 1 when performing a new search
         setCurrentPage(1);
@@ -54,44 +53,15 @@ const [rowData, setRowData] = useState([
         <>
         <Nav />
         <div style={{paddingLeft: "50px"}}>
-             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div style={{paddingTop: "20px"}}>
-                    <h1>Dock Booking List</h1>
-                </div>
-                <div style={{paddingRight: "50px"}}>
-                    <button type="button" className="btn btn-primary" style={{ backgroundColor: '#7c5f87' }} onClick={handleSearch}>Add Dock Booking</button>
-                </div>
+            <div style={{paddingTop: "20px"}}>
+                <h1>ISG Tracking</h1>
+                <hr style={{ width: '87vw', border: '1px solid black' }} />
             </div>
-            <hr style={{ width: '93vw', border: '1px solid black' }} />
-
-
             <div>
-                <h2>Search Booking</h2>
+                <h2>Search</h2>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'auto auto auto auto', alignItems: 'center' }}>
-                <div>
-                    <p>Location Name :</p>
-                    <select id="dropdown">
-                        <option value="text" aria-placeholder='select'>--Select--</option>
-                        <option value="text">Setia City Mall</option>
-                        <option value="text">SLB ETHANOL Warehouse</option>
-                        <option value="text">Flipkartchn</option>
-                        <option value="text">Locationd</option>
-                        
-                    </select>
-                </div>
-
-                <div>
-                    <p>From Date :</p>
-                    <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} />
-                </div>
-
-                <div>
-                    <p>To Date :</p>
-                    <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} />
-                </div>
-
                 <div>
                     <p>Cust/Tenant/Cons :</p>
                     <select id="dropdown">
@@ -145,30 +115,37 @@ const [rowData, setRowData] = useState([
                         <option value="text">LC Waikiki</option>
                     </select>
                 </div>
-               
-                <div style={{paddingTop: "15px"}}> 
-                    <p>Dock-IN-OUT Date :</p>
-                    <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)}  />
-                    
+
+                <div>
+                    <p>From Date :</p>
+                    <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} />
+                </div>
+
+                <div>
+                    <p>To Date :</p>
+                    <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} />
+                </div>
+
+                <div>
+                    <p>Booking No. :</p>
+                    <input type="text" value={bookingNo} onChange={(e) => setBookingNo(e.target.value)} />
                     <button type="button" className="btn btn-primary" style={{ backgroundColor: '#6d9ce8' }} onClick={handleSearch}>Search</button>
-                    
                 </div>
 
-                <div style={{paddingTop: "15px"}}>
-                    <p>Action :</p>
-                    <select id="dropdown">
-                        <option value="text" aria-placeholder='select'>--Select--</option>
-                        <option value="text">Approved</option>
-                        <option value="text">Rejected</option>
-                        </select>
+               
+            
 
-                        <button type="button" className="btn btn-primary" style={{ backgroundColor: '#6d9ce8' }} onClick={handleSearch}>Update</button>
-
+                             {/* Box below "To Date" */}
+                 {/* <div style={{ position: 'relative', gridColumn: 'span 4', textAlign: 'center', zIndex: 1 }}>
+                    <div style={{ width: '100px', height: '30px', backgroundColor: 'red', textAlign: 'center', lineHeight: '30px', position: 'absolute', bottom: '-60px' }} >
+                        <p>Cancelled</p>
+                    </div>
+                </div> */}
                 </div>
-              </div>
-
-
                 <br/>
+
+
+                
 
            {/* ag grid starts from here */}
                <div className='ag-theme-quartz' style={{ height:"100vh" , width:'92vw'}}>
@@ -185,4 +162,4 @@ const [rowData, setRowData] = useState([
     );
 }
 
-export default DockBooking;
+export default Tracking;
