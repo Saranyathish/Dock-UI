@@ -120,7 +120,7 @@ function Register() {
 
         <MDBCol col='6'>
           <img src={registerimg} class="w-100 rounded-4 shadow-4"
-            alt="" fluid/>
+            alt="truck-images" fluid/>
         </MDBCol>
 
       </MDBRow>

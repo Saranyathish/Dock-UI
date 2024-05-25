@@ -6,11 +6,11 @@ import Routers from '../../Routers/Routers'
 const Layout = () => {
   return (
     <Fragment>
-        {/* <Header /> */}
+       
         <div>
             <Routers />
         </div>
-        {/* <Footer /> */}
+        
 
     </Fragment>
   )

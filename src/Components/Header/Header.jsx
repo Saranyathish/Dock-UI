@@ -1,9 +1,47 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { Container,Row,Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import '../../Styles/Header.css';
-import { MDBIcon } from 'mdb-react-ui-kit';
+import { FaPhone } from "react-icons/fa6";
+import Select from 'react-select';
+import countryList from 'react-select-country-list';
+
+
+
+
 const Header = () => {
+  const [value, setValue] = useState('');
+
+  const options = useMemo(() => countryList().getData(), [])
+
+  const changeHandler = value => {
+    setValue(value)
+  }
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      border: 'none',
+      boxShadow: 'none',
+      '&:hover': {
+        border: 'none',
+      },
+    }),
+    container: (provided) => ({
+      ...provided,
+      width: '200%',
+    }),
+    valueContainer: (provided) => ({
+      ...provided,
+      minWidth: '100px',
+      maxWidth: '100%',
+    }),
+    menu: (provided) => ({
+      ...provided,
+      zIndex: 9999,
+    }),
+  };
+  
   return (
     <header className='header'>
     <div className="header__top">
@@ -11,18 +49,26 @@ const Header = () => {
           <Row>
             <Col lg="6" md="6" sm="6">
               <div className="header_top_left">
-                <span>Need Help?</span>
-                <span className="header_top_help">
-                  <i class="ri-phone-fill"></i> +9994817997
+              
+                <span className="header_top_help">Need help?
+                <a href='tel:+123456789'>
+                <button className="header__btn ">
+                  <FaPhone className='call-icon'/>
+                  {/* <div>Request a call</div> */}
+              </button> 
+              </a>
                 </span>
               </div>
             </Col>
 
             <Col lg="6" md="6" sm="6">
               <div className="header_top_right d-flex align-items-center justify-content-end gap-3">
+                
                 <Link to="/login" className=" d-flex align-items-center gap-1">
-                  <i class="ri-login-circle-line"></i> Login
+                  <i class="ri-login-circle-line"></i>Login
                 </Link>
+
+                
 
                 <Link to="/register" className=" d-flex align-items-center gap-1">
                   <i class="ri-user-line"></i> Register
@@ -43,25 +89,29 @@ const Header = () => {
                   <Link to="/home" className=" d-flex align-items-center gap-2">
                   <i class="ri-truck-line"></i>                    
                   <span>
-                      Book A <br /> Slot
+                      Book <br /> Slot
                     </span>
                   </Link>
                 </h1>
               </div>
             </Col>
 
-            <Col lg="3" md="3" sm="4">
+            <Col lg="4" md="3" sm="4">
               <div className="header__location d-flex align-items-center gap-2">
                 <span>
                   <i class="ri-earth-line"></i>
                 </span>
                 <div className="header__location-content">
-                  <h4>Country-India</h4>
+                  {/* <h4>Country</h4> */}
+                  <Select options={options} value={value} onChange={changeHandler} 
+                  styles={customStyles}/>
+
+                  
                 </div>
               </div>
             </Col>
 
-            <Col lg="3" md="3" sm="4">
+            <Col lg="4" md="3" sm="4">
               <div className="header__location d-flex align-items-center gap-2">
                 <span>
                 <i class="ri-flag-line"></i>
@@ -72,7 +122,7 @@ const Header = () => {
               </div>
             </Col>
 
-            <Col
+            {/* <Col
               lg="2"
               md="3"
               sm="0"
@@ -83,7 +133,7 @@ const Header = () => {
                   <i class="ri-phone-line"></i> Request a call
                 </Link>
               </button>
-            </Col>
+            </Col> */}
           </Row>
         </Container>
       </div>

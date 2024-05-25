@@ -45,7 +45,7 @@
     padding: 10px 15px;
     border: 1px solid #7c8a972a;
     outline: none;
-    color: #7c8a97;
+    color: rgb(242, 242, 208);;
   }
   
   .hero__slider-section {
@@ -63,13 +63,13 @@
   
   .form__row {
     background: #fff;
-    box-shadow: 5px 5px 15px -5px #7c8a97;
+    box-shadow: 5px 5px 15px -5px rgb(242, 242, 208);
   }
   
   .journey__time::before {
     content: "Journey time";
     margin-right: 0.8rem;
-    color: #7c8a97;
+    color: rgb(242, 242, 208);
   }
   
   .find__car-btn {
